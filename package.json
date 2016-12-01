@@ -1,0 +1,25 @@
+{
+  "name": "schoolapi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-env": "^0.4.0",
+    "supertest": "^2.0.1"
+  },
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "gulp-mocha": "^3.0.1",
+    "gulp-nodemon": "^2.2.1",
+    "mongoose": "^4.7.0",
+    "should": "^11.1.1",
+    "sinon": "^1.17.6"
+  },
+  "scripts": {
+    "build-sass": "node-sass assets/sass/style.scss public/css/style.css"
+  }
+}
