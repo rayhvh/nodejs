@@ -18,9 +18,9 @@ cdRouter.use('/:cdId', function (req,res,next) { // middelware waar je req als e
     CD.findById(req.params.cdId,function (err,CD) {//zoekt op id. via mongoose? en returned single
         if(err)
             res.status(500).send(err);
-        else if (CD) // als boek bestaat op id.
+        else if (CD) // als cd bestaat op id.
         {
-            req.CD = CD; // voeg aan de req je complete gevonden boek object toe
+            req.CD = CD; // voeg aan de req je complete gevonden cd object toe
             next();
         }
         else
@@ -31,7 +31,12 @@ cdRouter.use('/:cdId', function (req,res,next) { // middelware waar je req als e
 });
     cdRouter.route('/:cdId')  // als de route is bvb CDs/7123 zoekt mongoose op CDs database naar cd met id = 7123
         .get(function (req,res) {
-            res.json(req.CD);
+
+            var newCD = req.CD.toJSON();
+            newCD._links = {};
+            newCD._links.self = 'http://' + req.headers.host + '/api/CDs/' + newCD._id;
+            newCD._links.collection = 'http://' + req.headers.host + '/api/CDs/';
+            res.json(newCD);
             console.log("astublieft enkele cd");
         })
         .put (function (req,res) {

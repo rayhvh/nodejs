@@ -9,11 +9,11 @@ var mongoose = require('mongoose'),
             type: String
         },
         genre:{type: String},
-        played: {type: Boolean, default:false},
-      links: {
+        played: {type: Boolean, default:false}
+    /*  links: {
             self: {href:""},
             collection: {  href : "" }
-        }
+        }*/
     });
 
     module.exports= mongoose.model('CD',CDModel);

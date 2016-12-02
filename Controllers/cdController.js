@@ -25,7 +25,21 @@ var cdController = function (CD) {
           if(err)
               res.status(500).send(err);
           else
-              res.json(CDs);// response in json met cd models gevonden
+
+          var returnCollection={};
+              returnCollection.items = [];
+              returnCollection._links = {};
+              returnCollection._links.self = 'http://' + req.headers.host + '/api/CDs/';
+              returnCollection.pagination = {};
+
+              CDs.forEach(function (element,index,array) {
+                  var newCD = element.toJSON();
+                    newCD._links = {};
+                    newCD._links.self = 'http://' + req.headers.host + '/api/CDs/' + newCD._id;
+                    newCD._links.collection = 'http://' + req.headers.host + '/api/CDs/';
+                    returnCollection.items.push(newCD);
+              });
+              res.json(returnCollection);//
       });
   }
 
