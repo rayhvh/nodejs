@@ -42,19 +42,24 @@ cdRouter.use('/:cdId', function (req,res,next) { // middelware waar je req als e
             console.log("astublieft enkele cd");
         })
         .put (function (req,res) {
+            if (req.CD.title && req.CD.author && req.CD.genre){
+                req.CD.title = req.body.title;
+                req.CD.author = req.body.author;
+                req.CD.genre = req.body.genre;
+                req.CD.played = req.body.played;
 
-            req.CD.title = req.body.title;
-            req.CD.author = req.body.author;
-            req.CD.genre = req.body.genre;
-            req.CD.played = req.body.played;
-
-            req.CD.save(function (err) {
-                if(err)
-                    res.status(500).send(err);
-                else
-                    res.json(req.CD);
-            });
-            console.log('putted new data');
+                req.CD.save(function (err) {
+                    if(err)
+                        res.status(500).send(err);
+                    else
+                        res.json(req.CD);
+                });
+                console.log('putted new data');
+            }
+           else
+            {
+                res.status(400);
+            }
 
         })
         .patch(function (req,res) {

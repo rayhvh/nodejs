@@ -5,7 +5,7 @@ var cdController = function (CD) {
 
       if(!req.body.title || !req.body.genre || !req.body.author ){
           res.status(400);
-          res.send('Title is required');
+          res.send('Title and genre and author is required');
       }
       else {
           cd.save();
