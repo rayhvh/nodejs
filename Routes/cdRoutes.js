@@ -58,7 +58,8 @@ cdRouter.use('/:cdId', function (req,res,next) { // middelware waar je req als e
             }
            else
             {
-                res.status(400);
+                var err = "empty";
+                res.status(400).send(err);
             }
 
         })
