@@ -32,6 +32,7 @@ var cdController = function (CD) {
               returnCollection._links.self = {};
               returnCollection._links.self.href = 'http://' + req.headers.host + '/api/CDs/';
               returnCollection.pagination = {};
+              returnCollection.pagination.currentPage = 1;
 
               CDs.forEach(function (element,index,array) {
                   var newCD = element.toJSON();
