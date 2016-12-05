@@ -3,7 +3,7 @@ var cdController = function (CD) {
   var post = function (req,res) {
       var cd = new CD(req.body);
 
-      if(!req.body.title && !req.body.genre && !req.body.author ){
+      if(!req.body.title || !req.body.genre || !req.body.author ){
           res.status(400);
           res.send('Title is required');
       }
