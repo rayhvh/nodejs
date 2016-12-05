@@ -42,7 +42,7 @@ cdRouter.use('/:cdId', function (req,res,next) { // middelware waar je req als e
             console.log("astublieft enkele cd");
         })
         .put (function (req,res) {
-            if (req.CD.title && req.CD.author && req.CD.genre){
+            if (req.body.title && req.body.author && req.body.genre){
                 req.CD.title = req.body.title;
                 req.CD.author = req.body.author;
                 req.CD.genre = req.body.genre;
