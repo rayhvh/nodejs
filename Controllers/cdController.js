@@ -29,7 +29,8 @@ var cdController = function (CD) {
           var returnCollection={};
               returnCollection.items = [];
               returnCollection._links = {};
-              returnCollection._links.self = 'http://' + req.headers.host + '/api/CDs/';
+              returnCollection._links.self = {};
+              returnCollection._links.self.href = 'http://' + req.headers.host + '/api/CDs/';
               returnCollection.pagination = {};
 
               CDs.forEach(function (element,index,array) {
