@@ -78,6 +78,11 @@ cdRouter.use('/:cdId', function (req,res,next) { // middelware waar je req als e
                     res.json(req.CD);
             });
         })
+        .options(function (err,res) {
+            res.header('Access-Control-Allow-Methods', 'GET, PUT, PATCH, DELETE, OPTIONS');
+            res.sendStatus(200);
+        })
+
         .delete(function (req,res) {
             req.CD.remove(function (err) {
                 if(err)
