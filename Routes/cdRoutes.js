@@ -34,8 +34,10 @@ cdRouter.use('/:cdId', function (req,res,next) { // middelware waar je req als e
 
             var newCD = req.CD.toJSON();
             newCD._links = {};
-            newCD._links.self = 'http://' + req.headers.host + '/api/CDs/' + newCD._id;
-            newCD._links.collection = 'http://' + req.headers.host + '/api/CDs/';
+            newCD._links.self = {};
+            newCD._links.self.href = 'http://' + req.headers.host + '/api/CDs/' + newCD._id;
+            newCD._links.collection = {};
+            newCD._links.collection.href = 'http://' + req.headers.host + '/api/CDs/';
             res.json(newCD);
             console.log("astublieft enkele cd");
         })
