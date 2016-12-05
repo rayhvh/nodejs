@@ -36,8 +36,10 @@ var cdController = function (CD) {
               CDs.forEach(function (element,index,array) {
                   var newCD = element.toJSON();
                     newCD._links = {};
-                    newCD._links.self = 'http://' + req.headers.host + '/api/CDs/' + newCD._id;
-                    newCD._links.collection = 'http://' + req.headers.host + '/api/CDs/';
+                    newCD._links.self={};
+                    newCD._links.self.href = 'http://' + req.headers.host + '/api/CDs/' + newCD._id;
+                    newCD._links.collection = {};
+                    newCD._links.collection.href = 'http://' + req.headers.host + '/api/CDs/';
                     returnCollection.items.push(newCD);
               });
               res.json(returnCollection);//
