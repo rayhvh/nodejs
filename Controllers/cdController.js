@@ -70,6 +70,7 @@ var cdController = function (CD) {
                     paginationLinks.previous = {page: newPagePrev, href:'http://' + req.headers.host + '/api/CDs/?' + 'start=' + newPagePrev + '&limit=' + limit};
                     paginationLinks.next = {page: newPageNext, href:'http://' + req.headers.host + '/api/CDs/?' + 'start=' + newPageNext + '&limit=' + limit};
 
+                CD.find({}, function (err, CDs) {
                     CDs.forEach(function (element, index, array) {
                         var newCD = element.toJSON();
                         newCD._links = {};
@@ -79,9 +80,10 @@ var cdController = function (CD) {
                         newCD._links.collection.href = 'http://' + req.headers.host + '/api/CDs/';
                         returnCollection.items.push(newCD);
                     });
+                    res.json(returnCollection);//
+                }).limit(limit);
 
-                res.json(returnCollection);//
-            }).limit(limit);
+            });
         }
         else {
             var err = "no support json";
