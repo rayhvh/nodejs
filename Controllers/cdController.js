@@ -81,8 +81,8 @@ var cdController = function (CD) {
                         returnCollection.items.push(newCD);
                     });
                     res.json(returnCollection);//
-                }).limit(limit);
-
+                }).limit(limit).skip(page * limit - limit);
+                console.log(limit);
             });
         }
         else {
