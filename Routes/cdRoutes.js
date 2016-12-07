@@ -94,4 +94,5 @@ cdRouter.use('/:cdId', function (req,res,next) { // middelware waar je req als e
     return cdRouter;
 };
 
+
 module.exports = routes;
