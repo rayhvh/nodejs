@@ -19,6 +19,7 @@ var cdController = function (CD) {
 
         var query = {}; // lege query
         var page = parseInt(req.query.start) || 1; // haalt pagina uit GET of is 1
+        var limit = parseInt(req.query.limit) || 1000; // limiet uit GET of 1000
 
         if (req.accepts('JSON')) {
             if (req.query.genre) // als de user ?genre parameter gebruikt dan add deze in query
@@ -31,7 +32,6 @@ var cdController = function (CD) {
                 else
 
                     var countItems = CDs.length; // aantal cds
-                    var limit = parseInt(req.query.limit) || countItems; // limiet uit GET of totaal items.
                     if(limit > countItems){ // als limiet groter is als items dan is limiet nu evengroot.
                     limit = countItems;
                     }
@@ -70,17 +70,18 @@ var cdController = function (CD) {
                     paginationLinks.previous = {page: newPagePrev, href:'http://' + req.headers.host + '/api/CDs/?' + 'start=' + newPagePrev + '&limit=' + limit};
                     paginationLinks.next = {page: newPageNext, href:'http://' + req.headers.host + '/api/CDs/?' + 'start=' + newPageNext + '&limit=' + limit};
 
-                CDs.forEach(function (element, index, array) {
-                    var newCD = element.toJSON();
-                    newCD._links = {};
-                    newCD._links.self = {};
-                    newCD._links.self.href = 'http://' + req.headers.host + '/api/CDs/' + newCD._id;
-                    newCD._links.collection = {};
-                    newCD._links.collection.href = 'http://' + req.headers.host + '/api/CDs/';
-                    returnCollection.items.push(newCD);
-                });
+                    CDs.forEach(function (element, index, array) {
+                        var newCD = element.toJSON();
+                        newCD._links = {};
+                        newCD._links.self = {};
+                        newCD._links.self.href = 'http://' + req.headers.host + '/api/CDs/' + newCD._id;
+                        newCD._links.collection = {};
+                        newCD._links.collection.href = 'http://' + req.headers.host + '/api/CDs/';
+                        returnCollection.items.push(newCD);
+                    });
+
                 res.json(returnCollection);//
-            });
+            }).limit(limit);
         }
         else {
             var err = "no support json";
