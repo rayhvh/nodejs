@@ -70,7 +70,7 @@ var cdController = function (CD) {
                     paginationLinks.previous = {page: newPagePrev, href:'http://' + req.headers.host + '/api/CDs/?' + 'start=' + newPagePrev + '&limit=' + limit};
                     paginationLinks.next = {page: newPageNext, href:'http://' + req.headers.host + '/api/CDs/?' + 'start=' + newPageNext + '&limit=' + limit};
 
-                CD.find({}, function (err, CDs) {
+                CD.find(query, function (err, CDs) {
                     CDs.forEach(function (element, index, array) {
                         var newCD = element.toJSON();
                         newCD._links = {};

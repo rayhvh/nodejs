@@ -24,8 +24,8 @@ app.get('/', function (req, res) { // main pad wat komt als je niet /api gebruik
 app.get('/test', function (req, res) { // wat gebeurt als je /test used.
     res.send("Dit is een test!");
 });
-app.listen(3000, function () { //  zet express service aan op poort 3000 zodat req inkomen.
-    console.log("Gulp listening on port 3000!");
+app.listen(8000, function () { //  zet express service aan op poort 3000 zodat req inkomen.
+    console.log("Gulp listening on port 8000!");
 });
 
 module.exports =app;
