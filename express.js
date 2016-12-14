@@ -12,7 +12,11 @@ var CD = require('./Models/cdModel'); // verteld dat CD een model is op basis va
 var app = express(); // app is een naam waarmee we de express module gebruiken
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended:true}));
-
+app.use(function (req, res, next) {
+    // Website you wish to allow to connect
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    next();
+});
 cdRouter = require('./Routes/cdRoutes')(CD);
 
 
